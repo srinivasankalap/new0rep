@@ -2,6 +2,7 @@ import Card from "../UI/Card";
 import classes from './Adding.module.css';
 import Button from "../UI/Button";
 import { useState } from "react";
+import Wrapper from "../Wrapper/Wrapper";
 import Modal from "../UI/Modal";
 const Adding=(props)=>{
     const [enteredUsername, setUsername]=useState('');
@@ -14,14 +15,14 @@ const Adding=(props)=>{
             setError({
                 title: 'Invalid Input',
                 message: 'Please enter a valid name and age.'
-            })
+            });
             return; 
         }
-        if (enteredAge<1){
+        if (+enteredAge < 1){
             setError({
-                title: 'Invalid age',
-                message: 'Please enter a valid age(> 0).'
-            })
+                title: 'Invalid Age',
+                message: 'Please enter a valid age.'
+            });
             return;
         }
         props.onAdd(enteredUsername,enteredAge);
@@ -40,7 +41,7 @@ const Adding=(props)=>{
     }
 
     return (
-        <div>
+        <Wrapper>
             {error &&<Modal title={error.title} message={error.message} onConfirm={errorhandler}/>}
             <Card className={classes.input}>
                 <form onSubmit={addUser} >
@@ -51,7 +52,7 @@ const Adding=(props)=>{
                     <Button type="submit">Add User</Button>
                 </form>
             </Card>
-        </div>
+        </Wrapper>
     )
 }
 
