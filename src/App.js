@@ -6,9 +6,9 @@ function App() {
 
   const [userList, setUserList]=useState([]);
 
-  const addUser=(username,userage)=>{
+  const addUser=(username,userage,usercollege)=>{
     setUserList((prev)=>{
-      return [...prev, {name: username, age: userage, id: Math.random().toString()}]
+      return [...prev, {name: username, age: userage, id: Math.random().toString(), college: usercollege}]
     });
   }
   return (
